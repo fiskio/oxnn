@@ -26,15 +26,15 @@ SET(src-cuda src/init.cu)
 FILE(GLOB luasrc *.lua)
 
 
-CUDA_ADD_LIBRARY(oxnn MODULE ${src-cuda})
-TARGET_LINK_LIBRARIES(oxnn luaT THC TH)
+CUDA_ADD_LIBRARY(oxnn_cuda MODULE ${src-cuda})
+TARGET_LINK_LIBRARIES(oxnn_cuda luaT THC TH)
 
 ### Torch packages supposes libraries prefix is "lib"
-SET_TARGET_PROPERTIES(oxnn PROPERTIES
+SET_TARGET_PROPERTIES(oxnn_cuda PROPERTIES
   PREFIX "lib"
   IMPORT_PREFIX "lib")
 
-INSTALL(TARGETS oxnn
+INSTALL(TARGETS oxnn_cuda
   RUNTIME DESTINATION "${Torch_INSTALL_LUA_CPATH_SUBDIR}"
   LIBRARY DESTINATION "${Torch_INSTALL_LUA_CPATH_SUBDIR}")
 
